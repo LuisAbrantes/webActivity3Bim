@@ -1,11 +1,9 @@
+const path = require('path');
 
-//GET /
 const paginaInicial = (req, res) => {
-    res.sendFile(path.join(__dirname, 'view', 'index.html'))
+    res.sendFile(path.join(__dirname, '../view', 'index.html'));
 };
 
 module.exports = {
-   paginaInicial
+    paginaInicial
 };
- 
- 

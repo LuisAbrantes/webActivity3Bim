@@ -1,22 +1,18 @@
- const express = require('express');
+const express = require('express');
+const app = express();
+const path = require('path');
 
- const app = express();
- 
- const methodOverride = require('method-override');
- 
- app.use(methodOverride('_method'))
- 
- const path = require('path');
- app.use(express.static(path.join(__dirname, 'view')));
- 
- // Configurando middlewares
- app.use(express.json());
- app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
- const taskRoutes = require('./routes/taskRoute');
- const initialRoutes = require('./routes/initialRoute');
+app.use(express.static(path.join(__dirname, 'view')));
 
- app.use('/', initialRoutes);
- app.use('/tasks', taskRoutes);
+const initialRoutes = require('./routes/initialRoute');
+const turmasRoutes = require('./routes/turmasRuotes');
+const alunosRoutes = require('./routes/alunosRoutes');
 
- module.exports = app;
+app.use('/', initialRoutes);
+app.use('/turmas', turmasRoutes);
+app.use('/alunos', alunosRoutes);
+
+module.exports = app;
