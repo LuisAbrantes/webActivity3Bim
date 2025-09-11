@@ -53,7 +53,6 @@ async function buscarAlunos(event) {
     const nome = document.getElementById('nomeAluno').value;
     const turmaId = document.getElementById('turmaAluno').value;
 
-    // Constrói a URL da API com os parâmetros de busca (query params)
     const params = new URLSearchParams();
     if (nome) {
         params.append('nome', nome);
@@ -70,7 +69,6 @@ async function buscarAlunos(event) {
         }
         const alunos = await response.json();
 
-        // Monta o HTML da tabela de resultados dos alunos
         let tabelaHtml = `
             <h3>Resultados - Alunos</h3>
             <table border="1" width="100%">
@@ -110,13 +108,10 @@ async function buscarAlunos(event) {
     }
 }
 
-// "Escutador de eventos": Garante que o código só será executado depois que o HTML for completamente carregado.
 document.addEventListener('DOMContentLoaded', () => {
-    // Busca os dados iniciais assim que a página carrega
     buscarTurmas();
     buscarAlunos();
 
-    // Adiciona as funções aos elementos HTML corretos
     document
         .getElementById('btnListarTurmas')
         .addEventListener('click', buscarTurmas);
