@@ -14,6 +14,9 @@
  app.use(express.urlencoded({ extended: true }));
 
  const taskRoutes = require('./routes/taskRoute');
- app.use('/', taskRoutes);
+ const initialRoutes = require('./routes/initialRoute');
+
+ app.use('/', initialRoutes);
+ app.use('/tasks', taskRoutes);
 
  module.exports = app;

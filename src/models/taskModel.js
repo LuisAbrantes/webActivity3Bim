@@ -1,7 +1,7 @@
-  // Base de Dados
+// Base de Dados
 let tasks = [
  { id: 1, title: 'Estudar WEB', completed: 0},
- { id: 2, title: 'Revisar PBC', completed: 0},
+ { id: 2, title: 'Revisar PBC', completed: 1},
  { id: 3, title: 'Estudar BD', completed: 0},
 ];
 

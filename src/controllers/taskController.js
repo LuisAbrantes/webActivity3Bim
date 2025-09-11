@@ -27,18 +27,14 @@
     res.json(task);
  }
 
-// GET /tasksCompleted - Listar as tarefas Feitas
+// GET /tasks/tasksCompleted - Listar as tarefas Feitas
 const getTaskCompleted = (req, res) => {
    const tasks = taskModel.getCompleted();
    res.status(200).json(tasks);
 };
 
-//GET /
-const paginaInicial = (req, res) => {
-    res.sendFile(path.join(__dirname, 'view', 'index.html'))
-};
 
-// POST /createTask - Criar uma nova tarefa
+// POST tasks/create - Criar uma nova tarefa
 const createTask = (req, res) => {
    const newTask = taskModel.createTask(req.body);
    res.status(201).json(newTask);
@@ -48,7 +44,6 @@ module.exports = {
    getAllTasks ,
    getTaskId,
    getTaskCompleted,
-   createTask,
-   paginaInicial
+   createTask
 };
  
