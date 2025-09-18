@@ -1,38 +1,119 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consulta de Alunos e Turmas</title>
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Sistema de Alunos e Turmas</title>
+    </head>
+    <body>
+        <h1>Sistema de Cadastro - Alunos e Turmas</h1>
 
-    <h1>Consulta de Alunos e Turmas</h1>
+        <hr />
 
-    <div>
-        <h2>Turmas</h2>
-        <button id="btnListarTurmas">Listar Todas as Turmas</button>
-    </div>
-    <div id="resultadosTurmas"></div>
+        <!-- Seção Turmas -->
+        <h2>TURMAS</h2>
 
-    <hr>
+        <h3>Criar Nova Turma:</h3>
+        <label
+            >Nome:
+            <input
+                type="text"
+                id="turmaNome"
+                placeholder="Digite o nome da turma" /></label
+        ><br /><br />
+        <button onclick="criarTurma()">Criar Turma</button>
+        <button onclick="carregarTurmas()">Atualizar Lista</button>
+        <div id="turmaMessage"></div>
 
-    <h2>Alunos</h2>
-    <div>
-        <form id="formFiltroAlunos">
-            <label for="nomeAluno">Filtrar por Nome:</label>
-            <input type="text" id="nomeAluno" placeholder="Digite o nome do aluno">
+        <h3>Lista de Turmas:</h3>
+        <table border="1" id="turmasTable">
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Ações</th>
+            </tr>
+        </table>
 
-            <label for="turmaAluno">Filtrar por Turma:</label>
-            <select id="turmaAluno">
-                <option value="">Todas as turmas</option>
-            </select>
-            
-            <button type="submit">Filtrar Alunos</button>
-        </form>
-    </div>
-    <div id="resultadosAlunos"></div>
+        <hr />
 
-    <script src="client.js"></script>
-</body>
+        <!-- Seção Alunos -->
+        <h2>ALUNOS</h2>
+
+        <h3>Criar Novo Aluno:</h3>
+        <label
+            >Nome:
+            <input
+                type="text"
+                id="alunoNome"
+                placeholder="Digite o nome do aluno" /></label
+        ><br /><br />
+        <label
+            >Protocolo:
+            <input
+                type="text"
+                id="alunoProtocolo"
+                placeholder="Digite o protocolo" /></label
+        ><br /><br />
+        <label
+            >Email:
+            <input
+                type="email"
+                id="alunoEmail"
+                placeholder="Digite o email" /></label
+        ><br /><br />
+        <label
+            >Turma:
+            <select id="alunoTurma">
+                <option value="">Selecione uma turma</option>
+            </select> </label
+        ><br /><br />
+        <button onclick="criarAluno()">Criar Aluno</button>
+        <button onclick="carregarAlunos()">Atualizar Lista</button>
+        <div id="alunoMessage"></div>
+
+        <h3>Lista de Alunos:</h3>
+        <table border="1" id="alunosTable">
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Protocolo</th>
+                <th>Email</th>
+                <th>Turma</th>
+                <th>Ações</th>
+            </tr>
+        </table>
+
+        <div id="editTurmaModal">
+            <hr />
+            <h3>Editar Turma</h3>
+            <input type="hidden" id="editTurmaId" />
+            <label>Nome: <input type="text" id="editTurmaNome" /></label
+            ><br /><br />
+            <button onclick="atualizarTurma()">Salvar</button>
+            <button onclick="fecharModal('editTurmaModal')">Cancelar</button>
+            <hr />
+        </div>
+
+        <div id="editAlunoModal">
+            <hr />
+            <h3>Editar Aluno</h3>
+            <input type="hidden" id="editAlunoId" />
+            <label>Nome: <input type="text" id="editAlunoNome" /></label
+            ><br /><br />
+            <label
+                >Protocolo: <input type="text" id="editAlunoProtocolo" /></label
+            ><br /><br />
+            <label>Email: <input type="email" id="editAlunoEmail" /></label
+            ><br /><br />
+            <label
+                >Turma:
+                <select id="editAlunoTurma"></select></label
+            ><br /><br />
+            <button onclick="atualizarAluno()">Salvar</button>
+            <button onclick="fecharModal('editAlunoModal')">Cancelar</button>
+            <hr />
+        </div>
+
+        <script src="client.js"></script>
+    </body>
 </html>

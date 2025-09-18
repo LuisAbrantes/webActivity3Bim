@@ -38,6 +38,51 @@ let alunos = [
 
 const listarTodosOsAlunos = () => alunos;
 
+const criarAluno = dadosAluno => {
+    const novoId = Math.max(...alunos.map(a => a.id)) + 1;
+    const novoAluno = { id: novoId, ...dadosAluno };
+    alunos.push(novoAluno);
+    return novoAluno;
+};
+
+const buscarAlunoPorId = id => {
+    return alunos.find(aluno => aluno.id === parseInt(id));
+};
+
+const atualizarAluno = (id, dadosAtualizados) => {
+    const index = alunos.findIndex(aluno => aluno.id === parseInt(id));
+    if (index === -1) return null;
+
+    alunos[index] = { ...alunos[index], ...dadosAtualizados };
+    return alunos[index];
+};
+
+const deletarAluno = id => {
+    const index = alunos.findIndex(aluno => aluno.id === parseInt(id));
+    if (index === -1) return false;
+
+    alunos.splice(index, 1);
+    return true;
+};
+
+const deletarAlunosPorTurma = id_turma => {
+    const alunosRemovidos = alunos.filter(
+        aluno => aluno.id_turma === parseInt(id_turma)
+    );
+    alunos = alunos.filter(aluno => aluno.id_turma !== parseInt(id_turma));
+    return alunosRemovidos;
+};
+
+const listarAlunosPorTurma = id_turma => {
+    return alunos.filter(aluno => aluno.id_turma === parseInt(id_turma));
+};
+
 module.exports = {
-    listarTodosOsAlunos
+    listarTodosOsAlunos,
+    criarAluno,
+    buscarAlunoPorId,
+    atualizarAluno,
+    deletarAluno,
+    deletarAlunosPorTurma,
+    listarAlunosPorTurma
 };
